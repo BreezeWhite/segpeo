@@ -1,18 +1,13 @@
 import argparse
 import os
-import glob
 from pathlib import Path
 from PIL import Image
 
-import cv2
-import numpy as np
 import torch
 import torch.nn as nn
-from torchvision.utils import save_image
 
-import utils
-import inference
-from model.model import HumanSegment, HumanMatting
+import segpeo.inference as inference
+from model.model import HumanMatting
 
 
 # --------------- Arguments ---------------

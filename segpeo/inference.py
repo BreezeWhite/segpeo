@@ -1,13 +1,9 @@
-import cv2
-import numpy as np
-from PIL import Image
 import torch
-import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 
-
 import utils
+
 
 pil_to_tensor = transforms.Compose(
     [
@@ -15,22 +11,24 @@ pil_to_tensor = transforms.Compose(
     ]
 )
 
-infer_size = 1280
+INFER_SIZE = 1280
+DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
+
 
 def single_inference(model, img):
     h = img.height
     w = img.width
     if w >= h:
-        rh = infer_size
-        rw = int(w / h * infer_size)
+        rh = INFER_SIZE
+        rw = int(w / h * INFER_SIZE)
     else:
-        rw = infer_size
-        rh = int(h / w * infer_size)
+        rw = INFER_SIZE
+        rh = int(h / w * INFER_SIZE)
     rh = rh - rh % 64
     rw = rw - rw % 64    
 
     img = pil_to_tensor(img)
-    img = img[None, :, :, :].cuda()
+    img = img[None, :, :, :].to(DEVICE)
 
     input_tensor = F.interpolate(img, size=(rh, rw), mode='bilinear')
     with torch.no_grad():

@@ -22,7 +22,7 @@ import torchvision.transforms as transforms
 
 from model.model import HumanSegment, HumanMatting
 import utils
-import inference
+import segpeo.inference as inference
 
 pil_to_tensor = transforms.Compose(
     [

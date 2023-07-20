@@ -1,4 +1,4 @@
 opencv-python
-pytorch
+torch
 torchvision
 tqdm

@@ -5,7 +5,6 @@
 <img src="figs/teaser.gif" width="100%">
 
 <div align="center"><b>SGHM is a  robust and accurate method for automatic human matting  which requires no trimap input. Semantic guidance is well incorporated into our model to predict coarse mask and fine-grained alpha matte successively.</b></div>
-<div align="center"><b>SGHM是一个鲁棒、高质量的自动人像抠图方法。我们将语义监督很好地融入到抠图模型中，能够依次输出粗糙分割Mask图和精细Alpha图。</b></div>
 
 <p align="center">
   <a href="https://arxiv.org/abs/2210.05210">Paper</a>
@@ -24,44 +23,32 @@
 
 ## Usage ##
 
-#### Requirements
+1. Install and download the required packages.
 
-- [x] python
-- [x] pytorch
-- [x] torchvision
-- [x] opencv
-- [x] tqdm
+```bash
+pip install -r requirements.txt
 
-#### Testing
+# Download the pre-trained weight
+wget "https://drive.usercontent.google.com/download?id=1Ar5ASgfCUBmgZLwLHz6lThCQ-2EVnvqr&export=download&confirm=t" -O SGHM-ResNet50.pth
 
-1. You can download our pretraind weights from [link](https://drive.google.com/drive/folders/15mGzPJQFEchaZHt9vgbmyOy46XxWtEOZ?usp=sharing) (google drive)  or [link](https://pan.baidu.com/s/147xULbZ_FPNot0YWLZ-isQ) (百度云, 提取码: u8g4) and save it in the`./pretrained` folder.  
+```
 
 2. Test your own images
 
+  The output path will default to `./results` folder.
    ```python
    python test_image.py \
-       --images-dir "PATH_TO_IMAGES_DIR" \
-       --result-dir "PATH_TO_RESULT_DIR" \
-       --pretrained-weight ./pretrained/SGHM-ResNet50.pth
-   ```
+       --image-path "PATH_TO_FILE_OR_DIR" \
+       --pretrained-weight SGHM-ResNet50.pth
+  ```
 
-3. **Evaluate** on benchmarks 
-
-   ```python
-   python test_image.py \
-       --images-dir "PATH_TO_IMAGES_DIR" \
-       --gt-dir "PATH_TO_GT_ALPHA_DIR" \
-       --result-dir "PATH_TO_RESULT_DIR" \
-       --pretrained-weight ./pretrained/SGHM-ResNet50.pth
-   ```
-
-4.  Test your video
+3.  Test your video
 
    ```python
    python test_video.py \
        --video "PATH_TO_INPUT_VIDEO" \
        --output-video "PATH_TO_OUTPUT_VIDEO" \
-       --pretrained-weight ./pretrained/SGHM-ResNet50.pth
+       --pretrained-weight SGHM-ResNet50.pth
    ```
 
 

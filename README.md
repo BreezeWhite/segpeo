@@ -6,10 +6,14 @@
 
 <div align="center"><b>SGHM is a  robust and accurate method for automatic human matting  which requires no trimap input. Semantic guidance is well incorporated into our model to predict coarse mask and fine-grained alpha matte successively.</b></div>
 
-<p align="center">
-  <a href="https://arxiv.org/abs/2210.05210">Paper</a>
-</p>
-
+<div align="center">
+  <a href="https://arxiv.org/abs/2210.05210">
+    <img src="https://img.shields.io/badge/arXiv-2210.05210-b31b1b.svg" />
+  </a>
+  <a href="https://colab.research.google.com/github/BreezeWhite/segpeo/blob/main/colab.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg"/>
+  </a>
+</div>
 
 ## Highlights
 

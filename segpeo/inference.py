@@ -2,7 +2,7 @@ import torch
 import torch.nn.functional as F
 import torchvision.transforms as transforms
 
-import utils
+from segpeo.utils import get_unknown_tensor_from_pred
 
 
 pil_to_tensor = transforms.Compose(
@@ -37,9 +37,9 @@ def single_inference(model, img):
     # progressive refine alpha
     alpha_pred_os1, alpha_pred_os4, alpha_pred_os8 = pred['alpha_os1'], pred['alpha_os4'], pred['alpha_os8']
     pred_alpha = alpha_pred_os8.clone().detach()
-    weight_os4 = utils.get_unknown_tensor_from_pred(pred_alpha, rand_width=30, train_mode=False)
+    weight_os4 = get_unknown_tensor_from_pred(pred_alpha, rand_width=30, train_mode=False)
     pred_alpha[weight_os4>0] = alpha_pred_os4[weight_os4>0]
-    weight_os1 = utils.get_unknown_tensor_from_pred(pred_alpha, rand_width=15, train_mode=False)
+    weight_os1 = get_unknown_tensor_from_pred(pred_alpha, rand_width=15, train_mode=False)
     pred_alpha[weight_os1>0] = alpha_pred_os1[weight_os1>0]
 
     pred_alpha = pred_alpha.repeat(1, 3, 1, 1)

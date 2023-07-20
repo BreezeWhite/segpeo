@@ -18,10 +18,11 @@ from model.model import HumanSegment, HumanMatting
 # --------------- Arguments ---------------
 parser = argparse.ArgumentParser(description='Test Images')
 parser.add_argument(
+    '-i',
     '--image-path',
     type=str,
     required=True,
-    description='Could be a file path or a directory that contains images',
+    help='Could be a file path or a directory that contains images',
 )
 parser.add_argument('--result-dir', type=str, default='./results')
 parser.add_argument('--gt-dir', type=str, default=None)

@@ -27,33 +27,45 @@
 
 ## Usage ##
 
-1. Install and download the required packages.
+1. Install Segpeo from Github
 
-```bash
-pip install -r requirements.txt
-
-# Download the pre-trained weight
-wget "https://drive.usercontent.google.com/download?id=1Ar5ASgfCUBmgZLwLHz6lThCQ-2EVnvqr&export=download&confirm=t" -O SGHM-ResNet50.pth
-
+  ```bash
+  pip install git+https://github.com/BreezeWhite/segpeo
 ```
+
+### Available Options
+```
+usage: segpeo [-h] -i IMAGE_PATH [-o OUTPUT_DIR] [-c CHECKPOINT_PATH]
+
+Test Images
+
+options:
+  -h, --help            show this help message and exit
+  -i IMAGE_PATH, --image-path IMAGE_PATH
+                        Could be a file path or a directory that contains images
+  -o OUTPUT_DIR, --output-dir OUTPUT_DIR
+                        Path to output the result image. Default to the same folder of input image.
+  -c CHECKPOINT_PATH, --checkpoint-path CHECKPOINT_PATH
+                        Optionally provide your own checkpoint to use. Will download and use the default
+                        model if not specified.
+  ```
 
 2. Test your own images
 
-  The output path will default to `./results` folder.
-   ```python
-   python test_image.py \
-       --image-path "PATH_TO_FILE_OR_DIR" \
-       --pretrained-weight SGHM-ResNet50.pth
+  The output path will default to the same folder as input.
+  ```bash
+  # Will automatically download the checkpoint upon first run.
+  segpeo --image-path "PATH_TO_FILE_OR_DIR"
   ```
 
-3.  Test your video
+3.  Test your video (Not yet incorporated, please refer to the original [repo](https://github.com/cxgincsu/SemanticGuidedHumanMatting))
 
-   ```python
-   python test_video.py \
-       --video "PATH_TO_INPUT_VIDEO" \
-       --output-video "PATH_TO_OUTPUT_VIDEO" \
-       --pretrained-weight SGHM-ResNet50.pth
-   ```
+  ```python
+  python test_video.py \
+      --video "PATH_TO_INPUT_VIDEO" \
+      --output-video "PATH_TO_OUTPUT_VIDEO" \
+      --pretrained-weight SGHM-ResNet50.pth
+  ```
 
 
 ## Bibtex

@@ -8,9 +8,9 @@
 
 <div align="center">
   <a href="https://arxiv.org/abs/2210.05210">
-    <img src="https://img.shields.io/badge/arXiv-2210.05210-b31b1b.svg" />
+    <img src="https://img.shields.io/badge/arXiv-2210.05210-b31b1b.svg"/>
   </a>
-  <a href="https://colab.research.google.com/github/BreezeWhite/segpeo/blob/main/colab.ipynb">
+  <a href="https://colab.research.google.com/github/BreezeWhite/segpeo/blob/master/colab.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg"/>
   </a>
 </div>

@@ -13,7 +13,7 @@ setuptools.setup(
     author='SeanChan',
     author_email='cxgincsu@163.com',
     maintainer='BreezeWhite',
-    maintainer_email='miyasihta2010@tuta.io',
+    maintainer_email='miyashita2010@tuta.io',
     description='Robust Human Matting via Semantic Guidance',
     long_description=ldest,
     long_description_content_type='text/markdown',

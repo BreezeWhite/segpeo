@@ -5,6 +5,7 @@ from PIL import Image
 
 import torch
 import torch.nn as nn
+import numpy as np
 
 import segpeo.inference as inference
 from segpeo.model.model import HumanMatting
@@ -88,15 +89,23 @@ def main():
         # inference
         pred_alpha, pred_mask = inference.single_inference(model, img)
 
+        # Apply mask to the original image
+        masked_img = np.array(img) * pred_mask
+
         # save results
         output_dir = Path(args.output_dir) if args.output_dir else image_path.parent
         if not output_dir.exists():
             output_dir.mkdir()
 
-        out_name = os.path.splitext(image_name)[0] + '_mask.png'
-        save_path = output_dir / out_name
-        Image.fromarray(((pred_alpha * 255).astype('uint8')), mode='L').save(save_path)
-        print(f'Image saved to {save_path}')
+        # Write mask & masked image out
+        basename = os.path.splitext(image_name)[0]
+        mask_name = basename + '_mask.png'
+        out_img_name = basename + '_masked.png'
+        mask_save_path = output_dir / mask_name
+        out_img_save_path = output_dir / out_img_name
+        Image.fromarray(((pred_alpha * 255).astype('uint8')), mode='L').save(mask_save_path)
+        Image.fromarray(masked_img.astype('uint8')).save(out_img_save_path)
+        print(f'Image saved to {mask_save_path}')
 
 
 if __name__ == '__main__':
